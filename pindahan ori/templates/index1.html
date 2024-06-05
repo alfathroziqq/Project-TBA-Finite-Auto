@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PROJEK TBA</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+            margin: 0;
+            padding: 0;
+        }
+        .container {
+            max-width: 800px;
+            margin: 50px auto;
+            padding: 20px;
+            background-color: #fff;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+            border-radius: 10px;
+        }
+        h1 {
+            text-align: center;
+            color: #333;
+        }
+        form {
+            margin-bottom: 20px;
+        }
+        label {
+            font-weight: bold;
+            color: #333;
+        }
+        input[type="text"] {
+            width: calc(100% - 22px);
+            padding: 10px;
+            margin-bottom: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        button {
+            padding: 10px 20px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #45a049;
+        }
+        pre {
+            background-color: #f8f8f8;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            padding: 20px;
+            overflow-x: auto;
+            white-space: pre-wrap;
+            word-wrap: break-word;
+        }
+        code.python {
+            color: #333;
+            font-size: 16px;
+            line-height: 1.5;
+            font-family: Consolas, monospace;
+        }
+        p {
+            color: #666;
+        }
+        hr {
+            border: none;
+            border-top: 1px solid #ddd;
+            margin-top: 20px;
+        }
+        .error {
+            color: #ff0000;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>MENGUBAH NFA ATAUPUN e-NFA MENJADI DFA</h1>
+        <form action="/" method="POST">
+            <label for="states">States (Pisahkan dengan koma):</label><br>
+            <input type="text" id="states" name="states"><br>
+            <label for="alphabet">Alphabet (Pisahkan dengan koma):</label><br>
+            <input type="text" id="alphabet" name="alphabet"><br>
+            <p>Masukkan transisi:</p>
+            <div id="transitions">
+                <input type="text" name="transitions"><br>
+            </div>
+            <button type="button" onclick="addTransition()">Tambah Transisi</button><br><br>
+            <label for="start_state">Initial State:</label><br>
+            <input type="text" id="start_state" name="start_state"><br>
+            <label for="accept_states">Final States (Pisahkan dengan koma):</label><br>
+            <input type="text" id="accept_states" name="accept_states"><br><br>
+            <input type="submit" value="Submit">
+        </form>
+        <hr>
+        <pre><code class="python">
+{% if dfa_table %}
+{{ dfa_table }}
+{% else %}
+<p class="error">Belum ada tabel transisi DFA yang dihasilkan.</p>
+{% endif %}
+        </code></pre>
+    </div>
+
+    <script>
+        function addTransition() {
+            var div = document.getElementById("transitions");
+            var input = document.createElement("input");
+            input.setAttribute("type", "text");
+            input.setAttribute("name", "transitions");
+            input.style.width = "calc(100% - 22px)";
+            input.style.padding = "10px";
+            input.style.marginBottom = "10px";
+            input.style.border = "1px solid #ccc";
+            input.style.borderRadius = "5px";
+            div.appendChild(input);
+            div.appendChild(document.createElement("br"));
+        }
+    </script>
+</body>
+</html>

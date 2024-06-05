@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <title>Equivalence DFA</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        .container {
+            max-width: 800px;
+        }
+
+        .input-group {
+            margin-bottom: 10px;
+        }
+
+        label {
+            font-weight: bold;
+        }
+
+        input[type="text"],
+        input[type="submit"] {
+            padding: 5px;
+            width: 100%;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+
+        th,
+        td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
+        }
+
+        th {
+            background-color: #f2f2f2;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <h1 class="text-center mt-3">Equivalence DFA</h1>
+        <form action="/submit4" id="dfaForm" method="post" class="mt-4">
+            <h3>DFA 1</h2>
+                <div class="input-group">
+                    <label for="states1">States:</label>
+                    <input type="text" id="states1" name="states1" placeholder="Enter states">
+                </div>
+                <div class="input-group">
+                    <label for="symbol1">Input Symbols:</label>
+                    <input type="text" id="symbol1" name="symbol1" placeholder="Enter input symbols">
+                </div>
+                <div class="input-group">
+                    <label for="initialState1">Initial State:</label>
+                    <input type="text" id="initialState1" name="initialState1" placeholder="Enter initial state">
+                </div>
+                <div class="input-group">
+                    <label for="finalStates1">Final States:</label>
+                    <input type="text" id="finalStates1" name="finalStates1" placeholder="Enter final states">
+                </div>
+                <div id="transitions1"></div>
+                <h3 class="mt-4">DFA 2</h3>
+                <div class="input-group">
+                    <label for="states2">States:</label>
+                    <input type="text" id="states2" name="states2" placeholder="Enter states">
+                </div>
+                <div class="input-group">
+                    <label for="symbol2">Input Symbols:</label>
+                    <input type="text" id="symbol2" name="symbol2" placeholder="Enter input symbols">
+                </div>
+                <div class="input-group">
+                    <label for="initialState2">Initial State:</label>
+                    <input type="text" id="initialState2" name="initialState2" placeholder="Enter initial state">
+                </div>
+                <div class="input-group">
+                    <label for="finalStates2">Final States:</label>
+                    <input type="text" id="finalStates2" name="finalStates2" placeholder="Enter final states">
+                </div>
+                <div id="transitions2"></div>
+                <input type="submit" value="Check 2 DFA" class="btn btn-primary mt-3 mb-4">
+        </form>
+
+    </div>
+
+    <script>
+        document.getElementById("symbol1").addEventListener("change", function () {
+            var symbol1 = this.value.split(" ");
+            var states1 = document.getElementById("states1").value.split(" ");
+            var transitionsDiv = document.getElementById("transitions1");
+            transitionsDiv.innerHTML = "";
+
+            states1.forEach(function (state) {
+                var stateLabel = document.createElement("p");
+                stateLabel.textContent = "State: " + state;
+                transitionsDiv.appendChild(stateLabel);
+
+                symbol1.forEach(function (symbol) {
+                    var inputGroup = document.createElement("div");
+                    inputGroup.classList.add("input-group");
+                    var label = document.createElement("label");
+                    label.textContent = "Transition from state " + state + " with symbol " + symbol + ":";
+                    inputGroup.appendChild(label);
+                    var input = document.createElement("input");
+                    input.type = "text";
+                    input.name = "transitions1_" + state + "_" + symbol;
+                    input.placeholder = "Enter transition for state " + state + " with symbol " + symbol;
+                    inputGroup.appendChild(input);
+                    transitionsDiv.appendChild(inputGroup);
+                });
+            });
+        });
+
+        document.getElementById("symbol2").addEventListener("change", function () {
+            var symbol2 = this.value.split(" ");
+            var states2 = document.getElementById("states2").value.split(" ");
+            var transitionsDiv = document.getElementById("transitions2");
+            transitionsDiv.innerHTML = "";
+
+            states2.forEach(function (state) {
+                var stateLabel = document.createElement("p");
+                stateLabel.textContent = "State: " + state;
+                transitionsDiv.appendChild(stateLabel);
+
+                symbol2.forEach(function (symbol) {
+                    var inputGroup = document.createElement("div");
+                    inputGroup.classList.add("input-group");
+                    var label = document.createElement("label");
+                    label.textContent = "Transition from state " + state + " with symbol " + symbol + ":";
+                    inputGroup.appendChild(label);
+                    var input = document.createElement("input");
+                    input.type = "text";
+                    input.name = "transitions2_" + state + "_" + symbol;
+                    input.placeholder = "Enter transition for state " + state + " with symbol " + symbol;
+                    inputGroup.appendChild(input);
+                    transitionsDiv.appendChild(inputGroup);
+                });
+            });
+        });
+    </script>
+
+</body>
+
+</html>
